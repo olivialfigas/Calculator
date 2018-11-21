@@ -12,7 +12,7 @@ public class Calculator {
 class GUI extends JFrame implements ActionListener{
     JButton[] number = new JButton[10]; // 0-9 buttons
     JButton[] operator = new JButton[6]; // +,-,x,/,=, clear
-    JPanel numbers = new JPanel (new GridLayout(4,3)); //creates number panel 0-9
+    JPanel numbers = new JPanel (new GridLayout(4,3)); //creates number panel 0-9 (y,x)
     JPanel operators = new JPanel (new GridLayout(3,2));
 
     JTextArea result = new JTextArea();
@@ -59,6 +59,18 @@ class GUI extends JFrame implements ActionListener{
 
         for(JButton o:operator) //for each loop to add each button from array
             operators.add(o);
+    }
+
+    private void Clear(){
+        result.setText(""); //sets the text to nothing aka clears the JText field
+    }
+
+    private int Calculation(String calc){
+        //if +
+        //else if -
+        //else if *
+        //else if /
+        return 0;
     }
 }
 
