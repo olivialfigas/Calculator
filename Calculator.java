@@ -37,8 +37,20 @@ class GUI extends JFrame implements ActionListener{
         result.setBounds(0,0,380,50);
         add(result);
     }
-    public void actionPerformed(ActionEvent e){
 
+    public void actionPerformed(ActionEvent e){
+//FOR NUMBERS
+        for(JButton button: number){
+            if(e.getSource().equals(button)){
+
+            }
+        }
+//FOR OPERATORS
+        for(JButton button: operator){
+            if(e.getSource().equals(button)){
+
+            }
+        }
     }
 
     private void CreateNumbersJPanel(){
@@ -84,6 +96,10 @@ class GUI extends JFrame implements ActionListener{
     }
 
     private void Show(){
+        result.setText(Integer.toString(Calculation(input[1]))); //show first input in JTextArea
+        input[0] = result.getText();
+        input[1] = "";
+        input[2] = "";
     }
 }
 
