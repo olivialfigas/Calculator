@@ -16,6 +16,7 @@ class GUI extends JFrame implements ActionListener{
     JPanel operators = new JPanel (new GridLayout(3,2));
 
     JTextArea result = new JTextArea();
+    String[] input = {"","",""}; //first number, operator, second number
 
     public GUI(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +54,7 @@ class GUI extends JFrame implements ActionListener{
         operator[0] = new JButton("+");
         operator[1] = new JButton("-");
         operator[2] = new JButton("x");
-        operator[3] = new JButton("÷");
+        operator[3] = new JButton("/");
         operator[4] = new JButton("=");
         operator[5] = new JButton("C");
 
@@ -66,11 +67,23 @@ class GUI extends JFrame implements ActionListener{
     }
 
     private int Calculation(String calc){
-        //if +
-        //else if -
-        //else if *
-        //else if /
-        return 0;
+        if(calc.equals("+")){
+            return Integer.parseInt(input[0])+Integer.parseInt(input[2]);
+        }
+        else if(calc.equals("-")){
+            return Integer.parseInt(input[0])-Integer.parseInt(input[2]);
+        }
+        else if(calc.equals("x")){
+            return Integer.parseInt(input[0])*Integer.parseInt(input[2]);
+        }
+        else if(calc.equals("/")){
+            return Integer.parseInt(input[0])/Integer.parseInt(input[2]);
+        }
+        else
+            return 0;
+    }
+
+    private void Show(){
     }
 }
 
