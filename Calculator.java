@@ -42,13 +42,29 @@ class GUI extends JFrame implements ActionListener{
 //FOR NUMBERS
         for(JButton button: number){
             if(e.getSource().equals(button)){
-
+                if(input[1].equals("")){
+                    input[0] = input[0]+button.getText();
+                    result.setText(input[0]);
+                }
+                else{
+                    input[2] = input[2]+button.getText();
+                    result.setText(input[2]);
+                }
             }
         }
 //FOR OPERATORS
         for(JButton button: operator){
             if(e.getSource().equals(button)){
-
+                if(button.getText().equals("=")){
+                    Show();
+                }
+                else if(button.getText().equals("C")){
+                    Clear();
+                }
+                else{
+                    result.setText("");
+                    input[1]= button.getText();
+                }
             }
         }
     }
@@ -56,12 +72,13 @@ class GUI extends JFrame implements ActionListener{
     private void CreateNumbersJPanel(){
         for(int i=0;i<number.length;i++){
             number[i] = new JButton(Integer.toString(i)); // converts integers 0-9 to String to print them on buttons
+            number[i].addActionListener(this);
             numbers.add(number[i]); //add the buttons 0-9
 
         }
     }
 
-    private void CreateOperatorsJPanel(){
+    private void CreateOperatorsJPanel() {
         //creating each button seperately
         operator[0] = new JButton("+");
         operator[1] = new JButton("-");
@@ -70,12 +87,15 @@ class GUI extends JFrame implements ActionListener{
         operator[4] = new JButton("=");
         operator[5] = new JButton("C");
 
-        for(JButton o:operator) //for each loop to add each button from array
+        for (JButton o : operator) { //for each loop to add each button from array
+            o.addActionListener(this);
             operators.add(o);
+        }
     }
 
-    private void Clear(){
-        result.setText(""); //sets the text to nothing aka clears the JText field
+    private void Clear() {
+        input[0] = input[1] = input[2] = ""; //clears the inputs
+        result.setText(""); //clears the JTextArea
     }
 
     private int Calculation(String calc){
@@ -96,7 +116,7 @@ class GUI extends JFrame implements ActionListener{
     }
 
     private void Show(){
-        result.setText(Integer.toString(Calculation(input[1]))); //show first input in JTextArea
+        result.setText(Integer.toString(Calculation(input[1])));
         input[0] = result.getText();
         input[1] = "";
         input[2] = "";
