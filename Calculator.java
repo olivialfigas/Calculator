@@ -3,12 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * creates a calulator application that can add, subtract,multiply and divide 2 integers
+ */
 public class Calculator {
+    /**
+     * main method
+     * creating the anonymous class GUI
+     * @param args
+     */
     public static void main(String args[]){
         new GUI();
     }
 }
 
+/**
+ * initialises the GUI class
+ */
 class GUI extends JFrame implements ActionListener{
     JButton[] number = new JButton[10]; // 0-9 buttons
     JButton[] operator = new JButton[6]; // +,-,x,/,=, clear
@@ -18,6 +29,9 @@ class GUI extends JFrame implements ActionListener{
     JTextArea result = new JTextArea();
     String[] input = {"","",""}; //first number, operator, second number
 
+    /**
+     * creates the JFrame and sets its parameters
+     */
     public GUI(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Calculator");
@@ -38,8 +52,21 @@ class GUI extends JFrame implements ActionListener{
         add(result);
     }
 
+    /**
+     * the numbers loop: when the operators (input 1) is empty,
+     * input the first number (input 0),
+     * otherwise, ask for second number (input 2).
+     *
+     * the operators
+     * the numbers loop: when the operators is =,
+     * then perform Show(), when the operators is C,
+     * then perform Clear(), otherwise,
+     * goto input 2
+     *
+     * @param e event handler
+     */
     public void actionPerformed(ActionEvent e){
-//FOR NUMBERS
+    //FOR NUMBERS
         for(JButton button: number){
             if(e.getSource().equals(button)){
                 if(input[1].equals("")){
@@ -52,7 +79,7 @@ class GUI extends JFrame implements ActionListener{
                 }
             }
         }
-//FOR OPERATORS
+    //FOR OPERATORS
         for(JButton button: operator){
             if(e.getSource().equals(button)){
                 if(button.getText().equals("=")){
@@ -69,6 +96,9 @@ class GUI extends JFrame implements ActionListener{
         }
     }
 
+    /**
+     * creates and displays the buttons 0-9
+     */
     private void CreateNumbersJPanel(){
         for(int i=0;i<number.length;i++){
             number[i] = new JButton(Integer.toString(i)); // converts integers 0-9 to String to print them on buttons
@@ -78,6 +108,9 @@ class GUI extends JFrame implements ActionListener{
         }
     }
 
+    /**
+     * creates and displays the buttons +,-,x,/,=,C
+     */
     private void CreateOperatorsJPanel() {
         //creating each button seperately
         operator[0] = new JButton("+");
@@ -93,11 +126,21 @@ class GUI extends JFrame implements ActionListener{
         }
     }
 
-    private void Clear() {
-        input[0] = input[1] = input[2] = ""; //clears the inputs
-        result.setText(""); //clears the JTextArea
+    /**
+     * creates the clear
+     * the clear sets the values of input 0, 1 and 2 to an empty String
+     * and the text in the JTextArea to an empty String
+     */
+    private void Clear(){
+        input[0] = input[1] = input[2] = ""; //sets the inputs to nothing
+        result.setText(""); //sets the text to nothing
     }
 
+    /**
+     * creates the operations beneath the operator buttons +,-,x,/
+     * @param calc takes in the the operator in use
+     * @return returns the value of the operators
+     */
     private int Calculation(String calc){
         if(calc.equals("+")){
             return Integer.parseInt(input[0])+Integer.parseInt(input[2]);
@@ -115,6 +158,9 @@ class GUI extends JFrame implements ActionListener{
             return 0;
     }
 
+    /**
+     * displays the inputs in the JTextArea
+     */
     private void Show(){
         result.setText(Integer.toString(Calculation(input[1])));
         input[0] = result.getText();
